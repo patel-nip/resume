@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nip Patel — Resume</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0b1220;
+      --surface: #0f1928;
+      --panel: #121f30;
+      --border: #1e3248;
+      --border2: #192c42;
+      --text: #c8dced;
+      --muted: #4a6880;
+      --dim: #2a4060;
+      --accent: #5baddf;
+      --accent2: #3dd6c0;
+      --accent3: #e8c84a;
+      --mono: "Share Tech Mono", monospace;
+      --sans: "Space Grotesk", sans-serif;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 15px;
+    }
+
+    body {
+      background:
+        radial-gradient(ellipse 110% 60% at 30% -10%, rgba(80, 160, 240, 0.13) 0%, transparent 55%),
+        radial-gradient(ellipse 80% 50% at 80% 110%, rgba(61, 214, 192, 0.08) 0%, transparent 55%),
+        var(--bg);
+      background-attachment: fixed;
+      color: var(--text);
+      font-family: var(--sans);
+      font-weight: 400;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    @keyframes barGrow {
+      from {
+        transform: scaleX(0);
+      }
+
+      to {
+        transform: scaleX(1);
+      }
+    }
+
+    @keyframes drift {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 6px rgba(61, 214, 192, 0.5);
+      }
+
+      50% {
+        box-shadow: 0 0 14px rgba(91, 173, 223, 0.8);
+      }
+    }
+
+    .wrapper {
+      max-width: 970px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    /* HEADER */
+    .header {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 2rem;
+      padding: 2.2rem 2.2rem 2rem;
+      background: linear-gradient(135deg, rgba(91, 173, 223, 0.10) 0%, rgba(61, 214, 192, 0.05) 100%), var(--panel);
+      border: 1px solid var(--border);
+      border-bottom: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #3a8fc8 20%, #5baddf 40%, #3dd6c0 60%, #e8c84a 80%, transparent);
+      background-size: 200% 100%;
+      animation: drift 5s ease infinite;
+    }
+
+    /* PHOTO */
+    .photo-slot {
+      width: 90px;
+      height: 110px;
+      border-radius: 10px;
+      border: 2px solid var(--accent);
+      background: linear-gradient(135deg, rgba(91, 173, 223, 0.12), rgba(61, 214, 192, 0.08));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: border-color 0.25s, box-shadow 0.25s;
+      animation: pulse 3s ease infinite;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .photo-slot:hover {
+      border-color: var(--accent2);
+      box-shadow: 0 0 20px rgba(61, 214, 192, 0.2);
+    }
+
+    .photo-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+      display: block;
+    }
+
+    .photo-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.5rem;
+    }
+
+    .ph-icon {
+      font-size: 1.8rem;
+      color: var(--accent);
+      opacity: 0.7;
+    }
+
+    .ph-text {
+      font-family: var(--mono);
+      font-size: 0.55rem;
+      color: var(--muted);
+      text-align: center;
+      letter-spacing: 0.06em;
+      line-height: 1.4;
+    }
+
+    #photoInput {
+      display: none;
+    }
+
+    /* NAME */
+    .name {
+      font-size: 2.6rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1;
+      background: linear-gradient(120deg, #e0effa 0%, #a0d4f0 45%, #3dd6c0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 18px rgba(91, 173, 223, 0.25));
+    }
+
+    .title-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.6rem;
+      font-family: var(--mono);
+      font-size: 0.73rem;
+      color: var(--accent);
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      background: var(--accent2);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent2);
+    }
+
+    .sep {
+      color: var(--dim);
+    }
+
+    /* CONTACT */
+    .contact-grid {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.4rem;
+    }
+
+    .contact-item {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.2s;
+    }
+
+    .contact-item:hover {
+      color: var(--accent);
+    }
+
+    .contact-item .icon {
+      color: var(--accent);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* DIVIDER */
+    .sky-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border) 10%, var(--accent) 40%, var(--accent2) 60%, var(--border) 90%, transparent);
+    }
+
+    /* GRID */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr 285px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-top: none;
+    }
+
+    .left {
+      border-right: 1px solid var(--border2);
+      padding: 2rem;
+    }
+
+    .right {
+      padding: 2rem 1.5rem;
+    }
+
+    /* SECTION */
+    .section {
+      margin-bottom: 2rem;
+    }
+
+    .section:last-child {
+      margin-bottom: 0;
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.63rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .section-label::before {
+      content: "//";
+      color: var(--dim);
+    }
+
+    .section-label::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--border), transparent);
+    }
+
+    /* SUMMARY */
+    .summary {
+      font-size: 0.87rem;
+      color: #7a9ab8;
+      line-height: 1.85;
+      border-left: 2px solid var(--accent);
+      padding-left: 1rem;
+      margin-left: 0.3rem;
+      font-style: italic;
+    }
+
+    /* EXPERIENCE */
+    .exp-item {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border2);
+    }
+
+    .exp-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .exp-role {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #d0e8f8;
+    }
+
+    .exp-period {
+      font-family: var(--mono);
+      font-size: 0.63rem;
+      color: var(--muted);
+      white-space: nowrap;
+      margin-top: 0.15rem;
+      letter-spacing: 0.08em;
+    }
+
+    .exp-company {
+      font-size: 0.76rem;
+      color: var(--accent2);
+      font-family: var(--mono);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.6rem;
+    }
+
+    .exp-desc {
+      font-size: 0.81rem;
+      color: #6080a0;
+      line-height: 1.78;
+    }
+
+    .exp-desc li {
+      list-style: none;
+      padding-left: 1.2rem;
+      position: relative;
+      margin-bottom: 0.3rem;
+    }
+
+    .exp-desc li::before {
+      content: "›";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+
+    /* PROJECTS */
+    .project-item {
+      background: linear-gradient(135deg, rgba(91, 173, 223, 0.05) 0%, rgba(61, 214, 192, 0.03) 100%), var(--surface);
+      border: 1px solid var(--border2);
+      border-left: 2px solid var(--accent);
+      padding: 0.9rem 1rem;
+      margin-bottom: 0.75rem;
+      transition: border-color 0.25s, background 0.25s;
+    }
+
+    .project-item:hover {
+      border-left-color: var(--accent2);
+      background: linear-gradient(135deg, rgba(91, 173, 223, 0.09), rgba(61, 214, 192, 0.06)), var(--surface);
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.35rem;
+    }
+
+    .project-name {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #c8e4f8;
+    }
+
+    .project-link {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--accent2);
+      border: 1px solid rgba(61, 214, 192, 0.4);
+      padding: 0.15rem 0.5rem;
+      letter-spacing: 0.06em;
+      transition: all 0.2s;
+    }
+
+    .project-link:hover {
+      background: var(--accent2);
+      color: var(--bg);
+    }
+
+    .project-desc {
+      font-size: 0.78rem;
+      color: #4a6880;
+      line-height: 1.62;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .tag {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--muted);
+      background: var(--border2);
+      border: 1px solid var(--dim);
+      padding: 0.1rem 0.45rem;
+      letter-spacing: 0.05em;
+    }
+
+    .tag.blue {
+      color: var(--accent);
+      border-color: rgba(91, 173, 223, 0.35);
+      background: rgba(91, 173, 223, 0.06);
+    }
+
+    .tag.teal {
+      color: var(--accent2);
+      border-color: rgba(61, 214, 192, 0.3);
+      background: rgba(61, 214, 192, 0.05);
+    }
+
+    .tag.gold {
+      color: var(--accent3);
+      border-color: rgba(232, 200, 74, 0.3);
+      background: rgba(232, 200, 74, 0.05);
+    }
+
+    /* SKILLS */
+    .skill-group {
+      margin-bottom: 1.3rem;
+    }
+
+    .skill-group-name {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--accent2);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.55rem;
+    }
+
+    .skill-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .pill {
+      font-family: var(--mono);
+      font-size: 0.64rem;
+      color: var(--text);
+      background: linear-gradient(135deg, rgba(91, 173, 223, 0.06), var(--surface));
+      border: 1px solid var(--border);
+      padding: 0.2rem 0.55rem;
+      transition: all 0.2s;
+    }
+
+    .pill:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(91, 173, 223, 0.1);
+    }
+
+    /* STAT BARS */
+    .stat-bar-group {
+      margin-bottom: 0.65rem;
+    }
+
+    .stat-bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 0.63rem;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+      letter-spacing: 0.05em;
+    }
+
+    .stat-bar-track {
+      height: 3px;
+      background: var(--border);
+      overflow: hidden;
+    }
+
+    .stat-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      transform-origin: left;
+      animation: barGrow 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    /* EDUCATION */
+    .edu-item {
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border2);
+    }
+
+    .edu-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .edu-degree {
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: #c4dff0;
+      line-height: 1.4;
+    }
+
+    .edu-school {
+      font-family: var(--mono);
+      font-size: 0.66rem;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+      margin: 0.2rem 0 0.1rem;
+      line-height: 1.4;
+    }
+
+    .edu-year {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--muted);
+    }
+
+    /* ACHIEVEMENTS */
+    .ach-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      margin-bottom: 0.6rem;
+      font-size: 0.78rem;
+      color: #5a7a98;
+      line-height: 1.5;
+    }
+
+    .ach-item .bullet {
+      color: var(--accent2);
+      flex-shrink: 0;
+    }
+
+    /* LANGUAGES */
+    .lang-item {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      margin-bottom: 0.4rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--border2);
+    }
+
+    .lang-item:last-child {
+      border-bottom: none;
+    }
+
+    .lang-name {
+      color: var(--text);
+    }
+
+    .lang-level {
+      font-family: var(--mono);
+      font-size: 0.63rem;
+      color: var(--accent2);
+    }
+
+    /* FOOTER */
+    .resume-footer {
+      background: linear-gradient(135deg, rgba(91, 173, 223, 0.06), var(--surface));
+      border: 1px solid var(--border);
+      border-top: none;
+      padding: 0.75rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-text {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--dim);
+      letter-spacing: 0.08em;
+    }
+
+    .status-online {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--accent2);
+    }
+
+    .status-online::before {
+      content: "";
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: var(--accent2);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent2);
+    }
+
+    @media print {
+      .wrapper {
+        padding: 0;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .header {
+        grid-template-columns: auto 1fr;
+      }
+
+      .contact-grid {
+        grid-column: 1 / -1;
+        align-items: flex-start;
+      }
+
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .left {
+        border-right: none;
+        border-bottom: 1px solid var(--border2);
+      }
+
+      .name {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+
+    <!-- HEADER -->
+    <header class="header">
+      <div class="photo-slot">
+        <img id="photoPreview" src="candidate (1).jpeg" alt="Profile" />
+      </div>
+
+      <div class="name-block">
+        <div class="name">Nip Patel</div>
+        <div class="title-tag">
+          <span class="dot"></span>
+          Software Engineer
+          <span class="sep">//</span>
+          Web Dev &amp; AI/ML
+        </div>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-item"><span class="icon">&#9993;</span> patelnip09@email.com</div>
+        <div class="contact-item"><span class="icon">&#9099;</span><a href="https://github.com/patel-nip"
+            target="_blank">github.com/patelnip</a></div>
+        <div class="contact-item"><span class="icon">in</span><a href="https://linkedin.com/in/nip-patel-976936382"
+            target="_blank">linkedin.com/in/patel-nip</a></div>
+      </div>
+    </header>
+
+    <div class="sky-divider"></div>
+
+    <div class="main-grid">
+
+      <!-- LEFT -->
+      <div class="left">
+
+        <div class="section">
+          <div class="section-label">Profile</div>
+          <p class="summary">
+            Full-stack developer and AI/ML engineer with expertise in building scalable web applications,
+            intelligent document systems, and real-time platforms. Proficient across the complete product
+            lifecycle — from architecture and backend APIs to polished frontend UIs and trained ML models.
+            Pursuing dual degrees in Data Science and Computer Engineering while actively delivering
+            commercial-grade software and building personal AI research projects.
+          </p>
+        </div>
+
+        <div class="section">
+          <div class="section-label">Experience</div>
+
+          <div class="exp-item">
+            <div class="exp-header">
+              <div class="exp-role">Freelance Full-Stack Developer</div>
+              <div class="exp-period">2024 — PRESENT</div>
+            </div>
+            <div class="exp-company">Self-Employed · Remote</div>
+            <ul class="exp-desc">
+              <li>Built GLIDO — a ride-sharing platform with React, Express.js and MySQL featuring real-time location,
+                booking flow, and admin dashboard</li>
+              <li>Engineered a multi-user invoice management system with Firebase Auth, PDF export, and automated backup
+                workflows</li>
+              <li>Developed SmartDoc Vision, a Flask/OpenCV ML pipeline for intelligent document analysis and extraction
+              </li>
+              <li>Delivered 5+ client projects spanning landing pages, REST APIs, and database-driven SPAs</li>
+            </ul>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-header">
+              <div class="exp-role">Personal AI Model Developer</div>
+              <div class="exp-period">2024 — PRESENT</div>
+            </div>
+            <div class="exp-company">Independent Research · Deep Learning</div>
+            <ul class="exp-desc">
+              <li>Designing and training custom neural networks using PyTorch and TensorFlow for classification, NLP,
+                and vision tasks</li>
+              <li>Built end-to-end ML pipelines — data preprocessing, model training, evaluation, and REST API
+                deployment via FastAPI</li>
+              <li>Experimenting with fine-tuning pre-trained LLMs and vision transformers for domain-specific use cases
+              </li>
+              <li>Maintaining reproducible experiment tracking with structured notebooks and version-controlled model
+                checkpoints</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="section">
+          <div class="section-label">Projects</div>
+
+          <div class="project-item">
+            <div class="project-header">
+              <div class="project-name">GLIDO — Ride-Sharing Platform</div>
+              <a href="https://glido-5678.vercel.app" class="project-link">VIEW &#8594;</a>
+            </div>
+            <div class="project-desc">Full-stack Ola/Uber clone with live driver tracking, ride booking, fare
+              calculation, and role-based admin panel. Deployed on Railway + Vercel.</div>
+            <div class="project-stack">
+              <span class="tag blue">React</span>
+              <span class="tag blue">Express.js</span>
+              <span class="tag teal">MySQL</span>
+              <span class="tag teal">Google Maps API</span>
+              <span class="tag">JWT</span>
+              <span class="tag">Railway</span>
+            </div>
+          </div>
+
+          <div class="project-item">
+            <div class="project-header">
+              <div class="project-name">Auvero Homes — Real Estate Platform</div>
+              <a href="https://auvero-homes.vercel.app" class="project-link">VIEW &#8594;</a>
+            </div>
+            <div class="project-desc">Modern real estate listing and discovery platform with property search, filters,
+              agent profiles, and enquiry management system.</div>
+            <div class="project-stack">
+              <span class="tag blue">Next.js</span>
+              <span class="tag blue">Nest.js</span>
+              <span class="tag teal">PostgreSQL</span>
+              <span class="tag teal">Firebase</span>
+              <span class="tag">Tailwind</span>
+              <span class="tag">Vercel</span>
+            </div>
+          </div>
+
+          <div class="project-item">
+            <div class="project-header">
+              <div class="project-name">Liminal Landing Page</div>
+              <a href="https://liminal-landing-page-eta.vercel.app" class="project-link">VIEW &#8594;</a>
+            </div>
+            <div class="project-desc">Atmospheric liminal-themed landing page with eerie dark aesthetic, CRT scanlines,
+              grain texture, animated gradients, and immersive scroll effects.</div>
+            <div class="project-stack">
+              <span class="tag blue">HTML/CSS</span>
+              <span class="tag blue">Vanilla JS</span>
+              <span class="tag">CSS Animations</span>
+              <span class="tag">GSAP</span>
+            </div>
+          </div>
+
+          <div class="project-item">
+            <div class="project-header">
+              <div class="project-name">Forta Technologies</div>
+              <a href="https://ft-landing-ashy.vercel.app" class="project-link">VIEW &#8594;</a>
+            </div>
+            <div class="project-desc">Company website and internal tooling suite featuring product showcase, team
+              portal, and admin dashboard with analytics.</div>
+            <div class="project-stack">
+              <span class="tag blue">React</span>
+              <span class="tag blue">Node.js</span>
+              <span class="tag gold">FastAPI</span>
+              <span class="tag teal">MySQL</span>
+              <span class="tag">Docker</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="right">
+
+        <div class="section">
+          <div class="section-label">Skills</div>
+          <div class="skill-group">
+            <div class="skill-group-name">Languages</div>
+            <div class="skill-pills">
+              <span class="pill">JavaScript</span><span class="pill">TypeScript</span>
+              <span class="pill">Python</span><span class="pill">SQL</span>
+              <span class="pill">HTML/CSS</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">Web Dev</div>
+            <div class="skill-pills">
+              <span class="pill">React</span><span class="pill">Next.js</span>
+              <span class="pill">Node.js</span><span class="pill">Nest.js</span>
+              <span class="pill">Express</span><span class="pill">FastAPI</span>
+              <span class="pill">Flask</span><span class="pill">Tailwind</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">AI / ML</div>
+            <div class="skill-pills">
+              <span class="pill">PyTorch</span><span class="pill">TensorFlow</span>
+              <span class="pill">scikit-learn</span><span class="pill">OpenCV</span>
+              <span class="pill">Hugging Face</span><span class="pill">LangChain</span>
+              <span class="pill">NumPy</span><span class="pill">Pandas</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">Database &amp; Cloud</div>
+            <div class="skill-pills">
+              <span class="pill">MySQL</span><span class="pill">PostgreSQL</span>
+              <span class="pill">Firebase</span><span class="pill">Vercel</span>
+              <span class="pill">Railway</span><span class="pill">Docker</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-label">Proficiency</div>
+          <div class="stat-bar-group">
+            <div class="stat-bar-label"><span>React / Next.js</span><span>95%</span></div>
+            <div class="stat-bar-track">
+              <div class="stat-bar-fill" style="width:95%"></div>
+            </div>
+          </div>
+          <div class="stat-bar-group">
+            <div class="stat-bar-label"><span>Node / Express</span><span>92%</span></div>
+            <div class="stat-bar-track">
+              <div class="stat-bar-fill" style="width:92%"></div>
+            </div>
+          </div>
+          <div class="stat-bar-group">
+            <div class="stat-bar-label"><span>PyTorch / TF</span><span>80%</span></div>
+            <div class="stat-bar-track">
+              <div class="stat-bar-fill" style="width:80%"></div>
+            </div>
+          </div>
+          <div class="stat-bar-group">
+            <div class="stat-bar-label"><span>MySQL / DB Design</span><span>88%</span></div>
+            <div class="stat-bar-track">
+              <div class="stat-bar-fill" style="width:88%"></div>
+            </div>
+          </div>
+          <div class="stat-bar-group">
+            <div class="stat-bar-label"><span>UI/UX &amp; CSS</span><span>90%</span></div>
+            <div class="stat-bar-track">
+              <div class="stat-bar-fill" style="width:90%"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-label">Education</div>
+
+          <div class="edu-item">
+            <div class="edu-degree">BS — Data Science &amp; Applications</div>
+            <div class="edu-school">IIT Madras (IITM Online)</div>
+            <div class="edu-year">2025 — PRESENT</div>
+          </div>
+
+          <div class="edu-item">
+            <div class="edu-degree">B.Tech — Computer Science &amp; Engineering</div>
+            <div class="edu-school">GLS University · Faculty of Engineering &amp; Technology, Ahmedabad</div>
+            <div class="edu-year">2025 — PRESENT</div>
+          </div>
+
+          <div class="edu-item">
+            <div class="edu-degree">Higher Secondary — 12th PCM</div>
+            <div class="edu-school">Saraswat International Academy, Vapi — Valsad</div>
+            <div class="edu-year">2024 — 2025</div>
+          </div>
+
+        </div>
+
+        <div class="section">
+          <div class="section-label">Achievements</div>
+          <div class="ach-item"><span class="bullet">&#9670;</span>Built and shipped 4+ full-stack apps used by real
+            people</div>
+          <div class="ach-item"><span class="bullet">&#9670;</span>Simultaneously enrolled in IITM BS and B.E. CSE</div>
+          <div class="ach-item"><span class="bullet">&#9670;</span>Self-taught PyTorch and deep learning from scratch
+          </div>
+          <div class="ach-item"><span class="bullet">&#9670;</span>Goes from idea to deployed product surprisingly fast
+          </div>
+          <div class="ach-item"><span class="bullet">&#9670;</span>Passionate about clean UI, good DX, and weird
+            aesthetics</div>
+        </div>
+
+        <div class="section">
+          <div class="section-label">Languages</div>
+          <div class="lang-item"><span class="lang-name">English</span><span class="lang-level">Professional</span>
+          </div>
+          <div class="lang-item"><span class="lang-name">Hindi</span><span class="lang-level">Native</span></div>
+          <div class="lang-item"><span class="lang-name">Gujarati</span><span class="lang-level">Native</span></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="resume-footer">
+      <span class="footer-text">APURVA_PATIL.RESUME · v2026.03 · CONFIDENTIAL</span>
+      <span class="status-online">OPEN TO OPPORTUNITIES</span>
+    </div>
+
+  </div>
+
+  <script>
+    const input = document.getElementById("photoInput");
+    const preview = document.getElementById("photoPreview");
+    const placeholder = document.getElementById("photoPlaceholder");
+    input.addEventListener("change", function () {
+      const file = this.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        preview.src = e.target.result;
+        preview.style.display = "block";
+        placeholder.style.display = "none";
+      };
+      reader.readAsDataURL(file);
+    });
+  </script>
+</body>
+
+</html>
