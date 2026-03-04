@@ -232,6 +232,14 @@
       transition: color 0.2s;
     }
 
+    .contact-logo {
+      width: 14px;
+      height: 14px;
+      object-fit: contain;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
     .contact-item:hover {
       color: var(--accent);
     }
@@ -677,7 +685,7 @@
     <!-- HEADER -->
     <header class="header">
       <div class="photo-slot">
-        <img id="photoPreview" src="candidate (1).jpeg" alt="Profile" />
+        <img id="photoPreview" src="assets/candidate (1).jpeg" alt="Profile" />
       </div>
 
       <div class="name-block">
@@ -692,10 +700,14 @@
 
       <div class="contact-grid">
         <div class="contact-item"><span class="icon">&#9993;</span> patelnip09@email.com</div>
-        <div class="contact-item"><span class="icon">&#9099;</span><a href="https://github.com/patel-nip"
-            target="_blank">github.com/patelnip</a></div>
-        <div class="contact-item"><span class="icon">in</span><a href="https://linkedin.com/in/nip-patel-976936382"
-            target="_blank">linkedin.com/in/patel-nip</a></div>
+        <div class="contact-item">
+          <img src="assets/git.png" alt="GitHub" class="contact-logo">
+          <a href="https://github.com/patel-nip" target="_blank">github.com/patelnip</a>
+        </div>
+        <div class="contact-item">
+          <img src="assets/in.png" alt="LinkedIn" class="contact-logo">
+          <a href="https://linkedin.com/in/nip-patel-976936382" target="_blank">linkedin.com/in/patel-nip</a>
+        </div>
       </div>
     </header>
 
@@ -949,12 +961,6 @@
 
       </div>
     </div>
-
-    <div class="resume-footer">
-      <span class="footer-text">APURVA_PATIL.RESUME · v2026.03 · CONFIDENTIAL</span>
-      <span class="status-online">OPEN TO OPPORTUNITIES</span>
-    </div>
-
   </div>
 
   <script>
